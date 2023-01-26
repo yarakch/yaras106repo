@@ -1,13 +1,13 @@
+
 #!/bin/bash
 
-git pull 
+git pull
 
-touch version
+date > version
 
-currentDate = $(date +"%D %T") 
-
-echo $currentDate >> version
-
-git push --set-upstream origin main 
+git add version
+git commit -m "Version updated."
 
 git push 
+
+
