@@ -36,3 +36,5 @@ class SignalDetection:
   def __add__(self, other):
     return SignalDetection(self.__hit + other.__hit, self.__miss + other.__miss, self.__fa + other.__fa, self.__cr + other.__cr)
 
+  def __mul__(self, scalar):
+    return SignalDetection(self.__hit * scalar, self.__miss * scalar, self.__fa * scalar, self.__cr * scalar) 
