@@ -28,3 +28,7 @@ class SignalDetection:
     # Calculates the Criterion value
     self.__criterion = (-0.5 * (ndtri(self.hitRate()) + ndtri(self.falseAlarmRate())))
     return self.__criterion
+
+  def __add__(self, other):
+    return SignalDetection(self.__hit + other.__hit, self.__miss + other.__miss, self.__fa + other.__fa, self.__cr + other.__cr)
+
