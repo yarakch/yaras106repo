@@ -9,6 +9,10 @@ class SignalDetection:
     self.__fa = fa
     self.__cr = cr
 
+  def __str__(self):
+    "Returns the class as a labeled list to enable printing and error detection."
+    return f"hits: {self.__hit}, misses: {self.__miss}, false alarms: {self.__fa}, correct rejections: {self.__cr}" 
+
     #self.hr = (hit / (hit + miss))
     #self.far = (fa / (fa + cr))
   def hitRate(self): # should this be private? ask Weds
