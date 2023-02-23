@@ -41,23 +41,26 @@ class SignalDetection:
     """Overloads the multiplication operator to multiply a class object by a scalar."""
     return SignalDetection(self.__hit * scalar, self.__miss * scalar, self.__fa * scalar, self.__cr * scalar) 
 
-def plot_roc(*objects): # * specifies unknown number of objects
-    '''Drafted function for plot_roc(objects). Successfuly makes a graph but logic doesn't account for points where values are given out of order.
-    Also not the most readable'''
-    x_vals = [0] # initializing lists, beginnging with 0 to include point (0,0)
-    y_vals = [0]
+  def plot_roc(*objects): # * specifies unknown number of objects
+    """Generates a receiver operating curve for several class objects given the hit rate and false alarm rate."""
+    x_y = {0:0}
     for classObj in objects: # looping through arguments given to function to append all datapoints to appropriate lists
       classObj.hitRate()
       classObj.falseAlarmRate()
-      newX = classObj.__hr
-      x_vals.append(newX)
-      newY = classObj.__far
-      y_vals.append(newY)
-    x_vals.append(1) # appending (1,1) to both lists per prompt
-    y_vals.append(1)
+      newY = classObj.__hr
+      newX = classObj.__far
+      x_y[newX] = newY
+    x_y[1] = 1
+    dict_items = x_y.items()
+    sorted_dict = sorted(dict_items)
+    x_vals = []
+    y_vals = []
+    for x,y in sorted_dict: 
+      x_vals.append(x)
+      y_vals.append(y)
     plt.plot(x_vals, y_vals) # generating plot points
-    plt.xlabel('Hit Rate') # labeling axes
-    plt.ylabel('False Alarm Rate')
+    plt.ylabel("Hit Rate") # labeling axes
+    plt.xlabel("False Alarm Rate")
     plt.title("Receiver Operating Curve") # plot title
     plt.show() # generating visual
     return
