@@ -64,3 +64,21 @@ class SignalDetection:
     plt.title("Receiver Operating Curve") # plot title
     plt.show() # generating visual
     return
+
+def plot_sdt(self):
+    """Generates a signal detection plot."""
+    range = numpy.arange(-5, 5, 0.01)
+    signal = norm.pdf(range, 0, 1)
+    noise = norm.pdf(range, (self.d_prime()), 1)
+
+    peakX = [0, self.d_prime()]
+    peakY = [(max(signal)), max(noise)] 
+
+    plt.plot(range, signal, label="Signal", color='g')
+    plt.plot(range, noise, label="Noise", color='r')
+    plt.axvline(x=(self.criterion()), label="Criterion", color='c')
+    plt.plot(peakX,peakY,label='Distance\nBtwn Peaks', color='b')
+    plt.title("Signal Detection Theory (SDT) Plot")
+    plt.legend(loc='upper right')
+    plt.show()
+    return
