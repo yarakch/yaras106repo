@@ -11,7 +11,7 @@ def acceptanceProb(initialState, proposedState):
   
   def __accept(self, proposal):
     """Checkes whether to accept or reject proposed value based on acceptance probability."""
-    if self.acceptanceProb(self.initialState, proposal) >= numpy.uniform(): 
+    if self.acceptanceProb(self.initialState, proposal) >= numpy.random.uniform(): 
       yesno = True
     else:
       yesno = False
