@@ -6,8 +6,11 @@ class Metropolis:
   
   def __accept(self, proposal):
     """Checkes whether to accept or reject proposed value based on acceptance probability."""
-
-    return
+    if self == proposal: 
+      yesno = True
+    else:
+      yesno = False
+    return yesno
 
   def adapt(self):
     """Performs the adaptation phase of the Metropolis algorithm."""
