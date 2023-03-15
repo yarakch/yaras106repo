@@ -19,7 +19,18 @@ def acceptanceProb(initialState, proposedState):
 
   def adapt(self):
     """Performs the adaptation phase of the Metropolis algorithm."""
-
+    def adapt(self, blockLengths):
+    """Performs the adaptation phase of the Metropolis algorithm."""
+    
+    proposedSD = 1
+    targetAccept = 0.4 
+    counterK = 0
+    for block in blockLengths:
+      while counterK <= blockLengths[0]: 
+        rk = self.acceptanceProb(self.initialState, proposedSD)
+        proposedSD = proposedSD * ((targetAccept/rk)**1.1)
+        counterK += 1
+    self.SD = proposedSD
     return self
   
   def sample(self, n):
