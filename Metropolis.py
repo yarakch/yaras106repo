@@ -13,7 +13,7 @@ class Metropolis:
     if acceptanceProb > numpy.log(np.random.uniform()): 
       self.currentState = proposal
       self.accepted += 1 
-      self.pr0posed += 1
+      self.proposed += 1
       return True
     else: 
       self.proposed += 1
