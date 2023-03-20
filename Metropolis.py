@@ -28,7 +28,7 @@ class Metropolis:
     K = 0
     while N < len(blockLengths):
       while K < blockLengths[N]:
-        proposal = np.random.normal(loc=self.currentState, scale=proposedSD)
+        proposal = numpy.random.normal(loc=self.currentState, scale=proposedSD)
         self.__accept(proposal)
         K += 1
       acceptanceRate = self.__accepted / self.__proposed
@@ -39,12 +39,15 @@ class Metropolis:
   def sample(self, n):
     """Generates n samples from the target distribution using the Metropolis algorithm."""
     for sample in range(nSamples): 
-      proposal = np.random.normal(self.currentState, self.SD)
+      proposal = numpy.random.normal(self.currentState, self.SD)
       self.__accept(proposal)
       self.samples.append(self.currentState)
     return self
 
   def summmary(self):
     """Returns a dictionary or structure containing the mean and a 95% credible interval of generated samples."""
-
+    mean = numpy.mean(self.samples)
+    lower = numpy.percentile(self.samples, 2.5)
+    upper = numpy.percentile(self.samples, 97.5)
+    summ = {"mean": mean, "c025": lower, "c975": upper}
     return summ
