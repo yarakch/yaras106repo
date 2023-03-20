@@ -38,7 +38,10 @@ class Metropolis:
 
   def sample(self, n):
     """Generates n samples from the target distribution using the Metropolis algorithm."""
-
+    for sample in range(nSamples): 
+      proposal = np.random.normal(self.currentState, self.SD)
+      self.__accept(proposal)
+      self.samples.append(self.currentState)
     return self
 
   def summmary(self):
