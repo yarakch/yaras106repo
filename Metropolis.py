@@ -34,12 +34,12 @@ class Metropolis:
         self.__accept(proposal)
         K += 1
       acceptanceRate = self.__accepted / self.__proposed
-      proposedSD = proposedSD * ((acceptanceRate / targetRate) **1.1)
+      proposedSD = proposedSD * ((acceptanceRate / targetRate) ** 1.1)
       N += 1
     self.SD = proposedSD 
     return self 
 
-  def sample(self, n):
+  def sample(self, nSamples):
     """Generates n samples from the target distribution using the Metropolis algorithm."""
     for sample in range(nSamples): 
       proposal = numpy.random.normal(self.currentState, self.SD)
@@ -48,7 +48,7 @@ class Metropolis:
     return self
 
   def summmary(self):
-    """Returns a dictionary or structure containing the mean and a 95% credible interval of generated samples."""
+   """Creates and returns a dictionary containing summary statistics."""
     mean = numpy.mean(self.samples)
     lower = numpy.percentile(self.samples, 2.5)
     upper = numpy.percentile(self.samples, 97.5)
