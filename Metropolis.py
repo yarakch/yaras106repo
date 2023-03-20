@@ -31,7 +31,7 @@ class Metropolis:
         proposal = np.random.normal(loc=self.currentState, scale=proposedSD)
         self.__accept(proposal)
         K += 1
-      scceptanceRate = self.__accepted / self.__proposed
+      acceptanceRate = self.__accepted / self.__proposed
       proposedSD = proposedSD * ((acceptanceRate / targetRate) **1.1)
       N += 1
     self.SD = proposedSD  
