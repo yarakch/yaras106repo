@@ -1,3 +1,5 @@
+import numpy 
+
 class Metropolis:
   def __init__(self, logTarget, initialState):
     """Initializes the class object using the self, a target function, and an initial state."""
