@@ -21,20 +21,21 @@ class Metropolis:
 
   def adapt(self):
     """Performs the adaptation phase of the Metropolis algorithm."""
-    def adapt(self, blockLengths):
-    """Performs the adaptation phase of the Metropolis algorithm."""
-    
     proposedSD = 1
-    targetAccept = 0.4 
-    counterK = 0
-    for block in blockLengths:
-      while counterK <= blockLengths[0]: 
-        rk = self.acceptanceProb(self.initialState, proposedSD)
-        proposedSD = proposedSD * ((targetAccept/rk)**1.1)
-        counterK += 1
-    self.SD = proposedSD
-    return self
-  
+    targetRate = 0.4
+    acceptanceRate = 0
+    N = 0
+    K = 0
+    while N < len(blockLengths):
+      while K < blockLengths[N]:
+        proposal = np.random.normal(loc=self.currentState, scale=proposedSD)
+        self.__accept(proposal)
+        K += 1
+      scceptanceRate = self.__accepted / self.__proposed
+      proposedSD = proposedSD * ((acceptanceRate / targetRate) **1.1)
+      N += 1
+    self.SD = proposedSD  
+
   def sample(self, n):
     """Generates n samples from the target distribution using the Metropolis algorithm."""
 
