@@ -12,7 +12,7 @@ class Metropolis:
   def __accept(self, proposal):
     """Checkes whether to accept or reject proposed value based on acceptance probability."""
     acceptanceProb = min(0, self.logTarget(proposal) - self.logTarget(self.currentState))
-    if acceptanceProb > numpy.log(np.random.uniform()): 
+    if acceptanceProb > numpy.log(numpy.random.uniform()): 
       self.currentState = proposal
       self.__accepted += 1 
       self.__proposed += 1
